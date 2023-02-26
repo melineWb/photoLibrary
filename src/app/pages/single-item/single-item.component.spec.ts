@@ -10,16 +10,17 @@ import { RouterTestingModule } from "@angular/router/testing";
 describe('SingleItemComponent', () => {
   let component: SingleItemComponent;
   let fixture: ComponentFixture<SingleItemComponent>;
-  let imagesStorageService: any;
+  let imagesStorageService: Partial<ImagesStorageService>;
   let activatedRoute: Partial<ActivatedRoute>;
 
+  const blobFake: any = new Blob([''], { type: 'text/html' });
+  blobFake['lastModifiedDate'] = '';
+  blobFake['name'] = 'filename';
+
   beforeEach(async () => {
-    imagesStorageService = jasmine.createSpyObj('ImagesStorageService', [
-      'removeFromFavorites',
-    ]);
-    imagesStorageService.removeFromFavorites.and.callFake(() => {
-      return true;
-    });
+    imagesStorageService = {
+      removeFromFavorites: jasmine.createSpy('removeFromFavorites')
+    };
 
     activatedRoute = {
       params: of({
@@ -45,5 +46,23 @@ describe('SingleItemComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should show toast after remove', () => {
+    component.selectedItem = blobFake;
+    component.removeFromFavorites();
+
+    expect(component.message).toBe('Item successfully removed');
+    expect(component.showMessage).toBeTrue();
+  });
+
+  it('should hide toast after close clicked', () => {
+    component.selectedItem = blobFake;
+    component.removeFromFavorites();
+
+    expect(component.showMessage).toBeTrue();
+
+    component.closeToast();
+    expect(component.showMessage).toBeFalse();
   });
 });

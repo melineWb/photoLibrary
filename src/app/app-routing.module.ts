@@ -5,6 +5,8 @@ import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { SingleItemComponent } from './pages/single-item/single-item.component';
 import { FavoritesResolver } from './core/favorites.resolver';
 
+// TODO: add loadChildren for Lazy loading modules. Was not implemented due to lack of time
+
 const routes: Routes = [
   {
     path: 'home',

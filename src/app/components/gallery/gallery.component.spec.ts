@@ -41,7 +41,7 @@ describe('GalleryComponent', () => {
 
     scrollDispatcher = {
       register: jasmine.createSpy('register'),
-      scrolled: jasmine.createSpy('addToFavorites').and.returnValue(of({
+      scrolled: jasmine.createSpy('scrolled').and.returnValue(of({
         measureScrollOffset: () => 123,
       } as any))
     };
@@ -70,4 +70,6 @@ describe('GalleryComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  // TODO: impove code coverage for this component
 });

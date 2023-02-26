@@ -3,7 +3,6 @@ import { Resolve } from '@angular/router';
 
 import { BlobImage } from '../models/general.models';
 import { ImagesStorageService } from './services/images/storage.service';
-
 @Injectable({
   providedIn: 'root'
 })

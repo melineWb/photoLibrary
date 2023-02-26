@@ -49,7 +49,6 @@ export class SingleItemComponent implements OnInit, OnDestroy {
     if (!this.selectedItem) {
       return;
     }
-
     const isRemoved = this.imagesStorageService.removeFromFavorites(this.selectedItem);
     const msg = isRemoved ? 'Item successfully removed' : 'Issue during removing';
     this.showToast(msg);

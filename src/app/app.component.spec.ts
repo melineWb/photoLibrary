@@ -16,6 +16,8 @@ import { ImagesStorageService } from './core/services/images/storage.service';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
+    // TODO: Mock all providers
+
     await TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
