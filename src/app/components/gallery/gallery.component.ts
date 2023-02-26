@@ -58,6 +58,8 @@ export class GalleryComponent implements OnInit, OnDestroy {
       .subscribe((data: any) => {
         this.onWindowScroll(data);
       });
+
+    // Used library for virtual scroll due to lack of time
   }
 
   ngOnDestroy(): void {

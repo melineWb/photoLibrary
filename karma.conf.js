@@ -24,7 +24,7 @@ module.exports = function (config) {
       suppressAll: true, // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/amer-routing-at-edge-admin-ui'),
+      dir: require('path').join(__dirname, './coverage/app-photo-lib'),
       subdir: '.',
       reporters: [{ type: 'html' }, { type: 'text-summary' }],
     },
