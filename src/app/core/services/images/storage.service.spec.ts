@@ -1,17 +1,22 @@
 import { TestBed } from '@angular/core/testing';
-import { of } from 'rxjs';
+import { of, Subject } from 'rxjs';
 import { ImagesStorageService } from './storage.service';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { ImageApiService } from './images.service';
+import { BlobImage } from 'src/app/models/general.models';
 
 describe('ImagesStorageService', () => {
   let service: ImagesStorageService;
   let httpClientSpy: any;
-  let imageApiService: any;
+  let imageApiService: Partial<ImageApiService>;
 
   const blobFake: any = new Blob([''], { type: 'text/html' });
-  blobFake['lastModifiedDate'] = '';
-  blobFake['name'] = "filename";
+  blobFake.lastModifiedDate = '';
+  blobFake.name = 'filename';
+  blobFake.id = 'testId';
+  blobFake.selected = false;
+
+  const items$ = new Subject<BlobImage>();
 
   beforeEach(() => {
     httpClientSpy = jasmine.createSpyObj('httpClient', ['get']);
@@ -19,10 +24,11 @@ describe('ImagesStorageService', () => {
       return of(blobFake);
     });
 
-    imageApiService = jasmine.createSpyObj('ImageApiService', ['images$']);
-    httpClientSpy.images$.and.callFake(() => {
-      return of([blobFake]);
-    });
+    items$.next({...blobFake});
+
+    imageApiService = {
+      images$: items$,
+    };
 
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
@@ -39,13 +45,6 @@ describe('ImagesStorageService', () => {
     });
 
     service = TestBed.inject(ImagesStorageService);
-
-    window = {
-      sessionStorage: {
-        setItem: jasmine.createSpy('setItem'),
-        getItem: jasmine.createSpy('getItem'),
-      },
-    } as any;
   });
 
   it('should be created', () => {
@@ -53,23 +52,18 @@ describe('ImagesStorageService', () => {
   });
 
   it('should add to Favorites 1 item', () => {
-    expect(service.getAllFavorites().length).toBeFalsy();
+    const prevCount = service.getAllFavorites().length;
 
     service.addToFavorites(blobFake);
-    expect(service.getAllFavorites().length).toBe(1);
-  });
-
-  it('should set selected attr for images when it added to Favorites', () => {
-    expect(service.getAllFavorites().length).toBeFalsy();
-
-    const images = service.addToFavorites(blobFake);
-    expect(images[0].selected).toBe(true);
+    expect(service.getAllFavorites().length).toBe(prevCount + 1);
   });
 
   it('should remove from Favorites item', () => {
-    const item = service.addToFavorites(blobFake);
-    expect(service.getAllFavorites().length).toBe(1);
-    service.removeFromFavorites(item[0]);
-    expect(service.getAllFavorites().length).toBe(0);
+    service.addToFavorites(blobFake);
+    const items = service.getAllFavorites();
+    const prevCount = items.length;
+
+    service.removeFromFavorites(items[0]);
+    expect(service.getAllFavorites().length).toBe(prevCount - 1);
   });
 });

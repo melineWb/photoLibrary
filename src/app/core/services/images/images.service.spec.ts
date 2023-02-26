@@ -9,7 +9,7 @@ describe('ImageApiService', () => {
 
   const blobFake: any = new Blob([''], { type: 'text/html' });
   blobFake['lastModifiedDate'] = '';
-  blobFake['name'] = "filename";
+  blobFake['name'] = 'filename';
 
   beforeEach(() => {
     httpClientSpy = jasmine.createSpyObj('httpClient', ['get']);
