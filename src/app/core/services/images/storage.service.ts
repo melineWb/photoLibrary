@@ -25,10 +25,6 @@ export class ImagesStorageService {
     this.getFromLocalStorage();
   }
 
-  getAllImages(): BlobImage[] {
-    return this.images;
-  }
-
   getAllFavorites(): BlobImage[] {
     return this.favorites;
   }
@@ -83,6 +79,10 @@ export class ImagesStorageService {
     }
 
     return false;
+  }
+
+  private getAllImages(): BlobImage[] {
+    return this.images;
   }
 
   private findIndexById(id: string, arr: BlobImage[]): number | undefined {

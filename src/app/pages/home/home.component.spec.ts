@@ -15,7 +15,8 @@ describe('HomeComponent', () => {
         SharedModule,
         GalleryModule,
       ],
-      declarations: [ HomeComponent, HeaderComponent ]
+      declarations: [ HomeComponent, HeaderComponent ],
+      teardown: {destroyAfterEach: false},
     })
     .compileComponents();
 

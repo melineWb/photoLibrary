@@ -10,7 +10,7 @@ import { Subject, BehaviorSubject, of } from 'rxjs';
 import { BlobImage } from 'src/app/models/general.models';
 import { ScrollDispatcher } from '@angular/cdk/scrolling';
 
-xdescribe('GalleryComponent', () => {
+describe('GalleryComponent', () => {
   let component: GalleryComponent;
   let fixture: ComponentFixture<GalleryComponent>;
   let imageApiService: Partial<ImageApiService>;
@@ -57,7 +57,8 @@ xdescribe('GalleryComponent', () => {
         { provider: ImagesStorageService, useValue: imagesStorageService },
         { provide: ScrollDispatcher, useValue: scrollDispatcher},
       ],
-      declarations: [ GalleryComponent ]
+      declarations: [ GalleryComponent ],
+      teardown: {destroyAfterEach: false},
     })
     .compileComponents();
 

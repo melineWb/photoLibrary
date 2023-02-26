@@ -16,10 +16,6 @@ export class ImageApiService {
 
   constructor(public httpClient: HttpClient) {}
 
-  private getImageFromServ(): Observable<Blob> {
-    return this.httpClient.get(this.imageUrl, { responseType: 'blob' });
-  }
-
   getImagesByCount(countNum = 1) {
     for (let i = 1; i <= countNum; ++i) {
       const delayTime = this.getRandowDelay();
@@ -28,6 +24,10 @@ export class ImageApiService {
         this.getImage();
       }, i * delayTime);
     }
+  }
+
+  private getImageFromServ(): Observable<Blob> {
+    return this.httpClient.get(this.imageUrl, { responseType: 'blob' });
   }
 
   private getImage(): any {

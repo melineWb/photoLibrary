@@ -20,7 +20,8 @@ describe('CardItemComponent', () => {
         SharedModule,
         MatCardModule,
       ],
-      declarations: [ CardItemComponent ]
+      declarations: [ CardItemComponent ],
+      teardown: {destroyAfterEach: false},
     })
     .compileComponents();
 

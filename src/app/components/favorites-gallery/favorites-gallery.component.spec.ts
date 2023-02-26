@@ -25,7 +25,8 @@ describe('FavoritesGalleryComponent', () => {
         provide: Router,
         useValue: routerMock,
       }],
-      declarations: [ FavoritesGalleryComponent ]
+      declarations: [ FavoritesGalleryComponent ],
+      teardown: {destroyAfterEach: false},
     })
     .compileComponents();
 

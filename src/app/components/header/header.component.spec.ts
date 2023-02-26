@@ -11,7 +11,8 @@ describe('HeaderComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ SharedModule, MatToolbarModule ],
-      declarations: [ HeaderComponent ]
+      declarations: [ HeaderComponent ],
+      teardown: {destroyAfterEach: false},
     })
     .compileComponents();
 

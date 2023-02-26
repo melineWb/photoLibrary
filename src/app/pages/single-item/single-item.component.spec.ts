@@ -33,7 +33,8 @@ describe('SingleItemComponent', () => {
         { provider: ImagesStorageService, useValue: imagesStorageService },
         { provider: ActivatedRoute, useValue: activatedRoute },
       ],
-      declarations: [ SingleItemComponent ]
+      declarations: [ SingleItemComponent ],
+      teardown: {destroyAfterEach: false},
     })
     .compileComponents();
 

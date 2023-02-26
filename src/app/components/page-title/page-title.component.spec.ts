@@ -8,7 +8,8 @@ describe('PageTitleComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PageTitleComponent ]
+      declarations: [ PageTitleComponent ],
+      teardown: {destroyAfterEach: false},
     })
     .compileComponents();
 

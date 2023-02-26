@@ -36,6 +36,7 @@ describe('AppComponent', () => {
         AppComponent,
         HeaderComponent,
       ],
+      teardown: {destroyAfterEach: false},
     }).compileComponents();
   });
 

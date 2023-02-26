@@ -36,7 +36,8 @@ describe('FavoritesComponent', () => {
         provide: ActivatedRoute,
         useValue: activatedRoute
       }],
-      declarations: [ HeaderComponent, FavoritesComponent, PageTitleComponent ]
+      declarations: [ HeaderComponent, FavoritesComponent, PageTitleComponent ],
+      teardown: {destroyAfterEach: false},
     })
     .compileComponents();
 
