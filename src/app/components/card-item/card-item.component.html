@@ -1,0 +1,35 @@
+<mat-card class="gallery-card">
+  <div class="gallery-card-img-box">
+    <a href="#" role="link" (click)="onImageClick($event, cardItem)">
+      <img mat-card-image [src]="cardItem.data" class="gallery-card-img">
+    </a>
+  </div>
+  <mat-card-actions *ngIf="favoritesIcon || openImageIcon">
+    <ng-container *ngIf="favoritesIcon">
+      <ng-template [ngIf]="cardItem.selected" [ngIfElse]="nonSelectedIcon">
+        <button mat-icon-button
+          color='primary'
+          aria-label="Select image to favorites"
+          (click)="selectToFavorites(cardItem)">
+          <mat-icon>favorite</mat-icon>
+        </button>
+      </ng-template>
+
+      <ng-template #nonSelectedIcon>
+        <button mat-icon-button
+          aria-label="Select image to favorites"
+          (click)="selectToFavorites(cardItem)">
+          <mat-icon>favorite</mat-icon>
+        </button>
+      </ng-template>
+    </ng-container>
+
+
+    <button *ngIf="openImageIcon"
+      mat-icon-button
+      aria-label="Open image"
+      (click)="openImagePage(cardItem)">
+      <mat-icon>open_in_new</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

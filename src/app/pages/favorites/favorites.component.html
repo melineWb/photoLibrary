@@ -1,1 +1,7 @@
-<p>favorites works!</p>
+<app-page-title
+  [title]="items.length ? 'Selected pictures:' : 'You have no selected pictures'"
+  [subtitle]="items.length ? items.length.toString() : ''"
+></app-page-title>
+<app-favorites-gallery
+  [items]="items">
+</app-favorites-gallery>

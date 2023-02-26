@@ -1,0 +1,14 @@
+<div class="gallery">
+  <div class="container">
+    <div class="gallery-box">
+        <div class="gallery-card-box" *ngFor="let item of items">
+          <app-card-item
+            [cardItem]="item"
+            [openImageIcon]="true"
+            (openPreview)="openPreviewPage(item)">
+          </app-card-item>
+        </div>
+      </div>
+    </div>
+</div>
+

@@ -65,8 +65,7 @@ export class GalleryComponent implements OnInit, OnDestroy {
     this.destroyed$.complete();
   }
 
-  selectToFavorites(e: Event ,item: BlobImage) {
-    e.preventDefault();
+  selectToFavorites(item: BlobImage) {
     this.images = this.imagesStorageService.addToFavorites(item);
     this.cdr.detectChanges();
   }

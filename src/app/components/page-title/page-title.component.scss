@@ -1,0 +1,18 @@
+.title {
+  color: #fff;
+  font-size: 1.5em;
+
+  &-box {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding-top: 30px;
+  }
+
+  &-sub {
+    font-size: 1rem;
+    background: #c2185b;
+    padding: 2px 20px;
+    border-radius: 12px;
+    margin-left: 12px;
+  }
+}

@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="wrapper" *ngIf="selectedItem">
+    <img class="image-item" [src]="selectedItem.data" class="gallery-card-img">
+
+    <button
+      mat-stroked-button
+      color="primary"
+      (click)="removeFromFavorites()">
+      Remove From Favorites
+    </button>
+  </div>
+</div>
+
+<div *ngIf="showMessage" class="toast">
+  <p class="toast-msg">{{message}}</p>
+  <button
+    mat-icon-button
+    aria-label="Close toast"
+    class="toast-close"
+    (click)="closeToast()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
