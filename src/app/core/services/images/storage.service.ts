@@ -35,8 +35,8 @@ export class ImagesStorageService {
   }
 
   addToFavorites(item: BlobImage): BlobImage[] {
-    const selectedItemIndex: number | undefined = this.findIndexById(item.id, this.images);
-    const favoritesItemIndex: number | undefined = this.findIndexById(item.id, this.favorites);
+    const selectedItemIndex = this.findIndexById(item.id, this.images);
+    const favoritesItemIndex = this.findIndexById(item.id, this.favorites);
 
     if (favoritesItemIndex != -1) {
       this.removeFromFavorites(item);

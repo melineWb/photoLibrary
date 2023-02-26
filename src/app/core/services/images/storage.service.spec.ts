@@ -59,6 +59,11 @@ describe('ImagesStorageService', () => {
   });
 
   it('should remove from Favorites item', () => {
+    const blobFakeNew: any = new Blob([''], { type: 'text/html' });
+    blobFakeNew.name = 'filename';
+    blobFakeNew.id = 'testId-1';
+    blobFakeNew.selected = false;
+
     service.addToFavorites(blobFake);
     const items = service.getAllFavorites();
     const prevCount = items.length;
