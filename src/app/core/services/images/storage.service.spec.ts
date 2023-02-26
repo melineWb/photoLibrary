@@ -52,9 +52,14 @@ describe('ImagesStorageService', () => {
   });
 
   it('should add to Favorites 1 item', () => {
+    const blobFakeNew: any = new Blob([''], { type: 'text/html' });
+    blobFakeNew.name = 'filename';
+    blobFakeNew.id = 'testId-2';
+    blobFakeNew.selected = false;
+
     const prevCount = service.getAllFavorites().length;
 
-    service.addToFavorites(blobFake);
+    service.addToFavorites(blobFakeNew);
     expect(service.getAllFavorites().length).toBe(prevCount + 1);
   });
 
@@ -64,7 +69,7 @@ describe('ImagesStorageService', () => {
     blobFakeNew.id = 'testId-1';
     blobFakeNew.selected = false;
 
-    service.addToFavorites(blobFake);
+    service.addToFavorites(blobFakeNew);
     const items = service.getAllFavorites();
     const prevCount = items.length;
 
