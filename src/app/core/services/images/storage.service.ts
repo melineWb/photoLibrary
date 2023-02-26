@@ -36,20 +36,27 @@ export class ImagesStorageService {
 
   addToFavorites(item: BlobImage): BlobImage[] {
     const selectedItemIndex: number | undefined = this.findIndexById(item.id, this.images);
+    const favoritesItemIndex: number | undefined = this.findIndexById(item.id, this.favorites);
 
-    // we can use lodash lib and isNil() check, but it not required for small projects
-    if (selectedItemIndex != undefined) {
-      const selectedItem = {...item, ...{
-        selected: !item.selected,
-      }};
-      const images = [ ...this.images ];
+    if (favoritesItemIndex != -1) {
+      this.removeFromFavorites(item);
+    } else {
+      // we can use lodash lib and isNil() check, but it not required for small projects
+      if (selectedItemIndex != -1) {
+        const selectedItem = {...item, ...{
+          selected: !item.selected,
+        }};
+        const images = [ ...this.images ];
 
-      images[selectedItemIndex] = selectedItem;
+        images[selectedItemIndex] = selectedItem;
 
-      this.favorites.push(selectedItem);
-      this.images = images;
-      this.updateLocalStorage();
+        this.favorites.push(selectedItem);
+        this.images = images;
+        this.updateLocalStorage();
+      }
     }
+
+
     return this.getAllImages();
   }
 
@@ -85,7 +92,7 @@ export class ImagesStorageService {
     return this.images;
   }
 
-  private findIndexById(id: string, arr: BlobImage[]): number | undefined {
+  private findIndexById(id: string, arr: BlobImage[]): number {
     return arr.findIndex(item => item.id === id);
   }
 
