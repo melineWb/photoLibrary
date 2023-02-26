@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { BlobImage } from 'src/app/models/general.models';
 
@@ -14,7 +14,6 @@ export class FavoritesGalleryComponent {
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
   ) {}
 
   openPreviewPage(item: BlobImage) {
