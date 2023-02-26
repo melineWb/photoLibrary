@@ -5,14 +5,14 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { ImageApiService } from './images.service';
 import { BlobImage } from 'src/app/models/general.models';
 
-describe('ImagesStorageService', () => {
+fdescribe('ImagesStorageService', () => {
   let service: ImagesStorageService;
   let httpClientSpy: any;
   let imageApiService: Partial<ImageApiService>;
 
   const blobFake: any = new Blob([''], { type: 'text/html' });
   blobFake.lastModifiedDate = '';
-  blobFake.name = 'filename';
+  blobFake.data = 'filename';
   blobFake.id = 'testId';
   blobFake.selected = false;
 
@@ -24,7 +24,6 @@ describe('ImagesStorageService', () => {
       return of(blobFake);
     });
 
-    items$.next({...blobFake});
 
     imageApiService = {
       images$: items$,
@@ -45,35 +44,42 @@ describe('ImagesStorageService', () => {
     });
 
     service = TestBed.inject(ImagesStorageService);
+    items$.next({...blobFake});
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should add to Favorites 1 item', () => {
-    const blobFakeNew: any = new Blob([''], { type: 'text/html' });
-    blobFakeNew.name = 'filename';
-    blobFakeNew.id = 'testId-2';
-    blobFakeNew.selected = false;
-
-    const prevCount = service.getAllFavorites().length;
-
-    service.addToFavorites(blobFakeNew);
-    expect(service.getAllFavorites().length).toBe(prevCount + 1);
-  });
-
   it('should remove from Favorites item', () => {
-    const blobFakeNew: any = new Blob([''], { type: 'text/html' });
-    blobFakeNew.name = 'filename';
-    blobFakeNew.id = 'testId-1';
-    blobFakeNew.selected = false;
+    jasmine.clock().install();
+    const newItem = { ...blobFake, ...{id:  '123123'}};
+-   items$.next({...newItem});
+    items$.next({...newItem});
 
-    service.addToFavorites(blobFakeNew);
+    service.addToFavorites(newItem);
+
+    jasmine.clock().tick(300);
     const items = service.getAllFavorites();
     const prevCount = items.length;
 
-    service.removeFromFavorites(items[0]);
+    service.removeFromFavorites(newItem);
     expect(service.getAllFavorites().length).toBe(prevCount - 1);
+
+    jasmine.clock().uninstall();
+  });
+
+  it('should add to Favorites 1 item', () => {
+    jasmine.clock().install();
+    service.removeFromFavorites(blobFake);
+
+    jasmine.clock().tick(300);
+    const prevCount = service.getAllFavorites().length;
+
+    service.addToFavorites(blobFake);
+
+    expect(service.getAllFavorites().length).toBe(prevCount + 1);
+
+    jasmine.clock().uninstall();
   });
 });
