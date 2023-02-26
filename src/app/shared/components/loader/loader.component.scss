@@ -1,0 +1,25 @@
+.spinner-overlay {
+  background-color: rgba(255, 255, 255, .15);
+  backdrop-filter: blur(5px);
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.spinner-content {
+  display: inline-block;
+}
+
+.spiner-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}

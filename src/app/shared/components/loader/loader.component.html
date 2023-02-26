@@ -1,0 +1,12 @@
+<div
+  *ngIf="display"
+  [ngClass]="{
+    'spinner-overlay': withOverlay,
+    'spiner-box': !withOverlay
+  }">
+  <div class="spinner-content">
+    <mat-spinner></mat-spinner>
+  </div>
+</div>
+
+

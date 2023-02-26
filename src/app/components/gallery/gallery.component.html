@@ -1,0 +1,46 @@
+<div class="gallery">
+  <cdk-virtual-scroll-viewport
+    itemSize="20"
+    class="example-viewport">
+    <div class="container">
+      <div class="gallery-box">
+
+          <div class="gallery-card-box" *cdkVirtualFor="let image of images">
+            <mat-card class="gallery-card">
+              <div class="gallery-card-img-box">
+                <a href="#" role="link" (click)="selectToFavorites($event, image)">
+                  <img mat-card-image [src]="image.data" class="gallery-img">
+                </a>
+              </div>
+              <mat-card-actions>
+                <ng-template [ngIf]="image.selected" [ngIfElse]="nonSelectedIcon">
+                  <button mat-icon-button
+                    color='primary'
+                    aria-label="Select image to favorites"
+                    (click)="selectToFavorites($event, image)">
+                    <mat-icon>favorite</mat-icon>
+                  </button>
+                </ng-template>
+
+                <ng-template #nonSelectedIcon>
+                  <button mat-icon-button
+                    aria-label="Select image to favorites"
+                    (click)="selectToFavorites($event, image)">
+                    <mat-icon>favorite</mat-icon>
+                  </button>
+                </ng-template>
+
+                <!-- <button mat-icon-button disabled aria-label="Example icon button with a open in new tab icon">
+                  <mat-icon>open_in_new</mat-icon>
+                </button> -->
+              </mat-card-actions>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+  </cdk-virtual-scroll-viewport>
+  <div>
+    <app-loader [display]="showLoader$ | async"></app-loader>
+  </div>
+</div>
+
