@@ -4,11 +4,11 @@
     class="gallery-viewport">
     <div class="container">
       <div class="gallery-box">
-          <div class="gallery-card-box" *cdkVirtualFor="let image of images">
+          <div class="gallery-card-box" *cdkVirtualFor="let image of images; let i = index">
             <app-card-item
               [cardItem]="image"
               [favoritesIcon]="true"
-              (addToFavorites)="selectToFavorites(image)">
+              (addToFavorites)="selectToFavorites(image, i)">
             </app-card-item>
           </div>
         </div>
