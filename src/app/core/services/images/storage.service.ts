@@ -1,6 +1,5 @@
-import { Injectable, Inject } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { ImageApiService } from './images.service';
 import { BlobImage } from '../../../models/general.models';
 

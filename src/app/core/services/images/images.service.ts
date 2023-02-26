@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, tap, map, interval, switchMap, delayWhen, delay, of, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { BlobImage } from '../../../models/general.models';
 import { Subject } from 'rxjs';
-// import { concatMap, delay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -21,14 +20,12 @@ export class ImageApiService {
     return this.httpClient.get(this.imageUrl, { responseType: 'blob' });
   }
 
-  getImagesByCount(countNum: number = 1) {
-    const _this = this;
-
+  getImagesByCount(countNum = 1) {
     for (let i = 1; i <= countNum; ++i) {
-      const delayTime: number = this.getRandowDelay();
+      const delayTime = this.getRandowDelay();
 
-      setTimeout(function(){
-        _this.getImage();
+      setTimeout(() => {
+        this.getImage();
       }, i * delayTime);
     }
   }
@@ -42,7 +39,7 @@ export class ImageApiService {
     );
   }
 
-  private getRandowDelay(min: number = 200, max: number = 300): number {
+  private getRandowDelay(min = 200, max = 300): number {
     const minVal = Math.ceil(min);
     const maxVal = Math.floor(max);
     return Math.floor(Math.random() * (maxVal - minVal + 1) + minVal);
@@ -54,7 +51,7 @@ export class ImageApiService {
   }
 
   private createImageFromBlob(image: Blob): void {
-    let reader = new FileReader();
+    const reader = new FileReader();
     reader.addEventListener("load", () => {
        this.images$.next({
         id: this.getUniqueId(),
@@ -68,10 +65,9 @@ export class ImageApiService {
     }
    }
 
-   private getUniqueId(parts: number = 3): string {
+   private getUniqueId(parts = 3): string {
     const stringArr = [];
     for(let i = 0; i< parts; i++){
-      // tslint:disable-next-line:no-bitwise
       const S4 = (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
       stringArr.push(S4);
     }

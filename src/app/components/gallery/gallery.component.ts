@@ -19,15 +19,15 @@ import { BlobImage } from 'src/app/models/general.models';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GalleryComponent implements OnInit, OnDestroy {
-  images: any[] = [];
+  images: BlobImage[] = [];
   scrollingSubscription: any;
   showLoader$: Observable<boolean>;
-  private imagesInRow: number = 3; // TODO: change for Tablet / Mobile view
-  private displayedRows: number = 2;
+  private imagesInRow = 3; // TODO: change for Tablet / Mobile view
+  private displayedRows = 2;
   private destroyed$: ReplaySubject<boolean> = new ReplaySubject(1);
-  private scrolledRow: number = 1;
+  private scrolledRow = 1;
   private windowHeight: number;
-  private cardHeight: number = 464;
+  private cardHeight = 464;
   @HostListener('window:resize', ['$event'])
     onResize() {
       return this.setDisplatedRows();

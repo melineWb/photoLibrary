@@ -12,8 +12,8 @@ import { takeUntil, ReplaySubject } from 'rxjs';
 })
 export class SingleItemComponent implements OnInit, OnDestroy {
   selectedItem: BlobImage | null;
-  showMessage: boolean = false;
-  message: string = '';
+  showMessage = false;
+  message = '';
   private destroyed$: ReplaySubject<boolean> = new ReplaySubject(1);
 
   constructor(
@@ -66,7 +66,6 @@ export class SingleItemComponent implements OnInit, OnDestroy {
   }
 
   private getImageData(id: string): BlobImage | null {
-    console.log(this.imagesStorageService.getFavoriteImage(id));
     return this.imagesStorageService.getFavoriteImage(id);
   }
 }

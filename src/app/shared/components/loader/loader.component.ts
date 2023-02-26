@@ -7,6 +7,6 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoaderComponent {
-  @Input() withOverlay: boolean = false;
+  @Input() withOverlay = false;
   @Input() display: boolean | null = false;
 }

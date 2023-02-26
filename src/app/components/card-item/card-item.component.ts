@@ -9,8 +9,8 @@ import { BlobImage } from 'src/app/models/general.models';
 })
 export class CardItemComponent {
     @Input() cardItem: BlobImage;
-    @Input() favoritesIcon: boolean = false;
-    @Input() openImageIcon: boolean = false;
+    @Input() favoritesIcon = false;
+    @Input() openImageIcon = false;
 
     @Output() addToFavorites = new EventEmitter<BlobImage>();
     @Output() openPreview = new EventEmitter<BlobImage>();
