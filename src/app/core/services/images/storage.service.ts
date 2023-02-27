@@ -41,7 +41,6 @@ export class ImagesStorageService {
     if (favoritesItemIndex != -1) {
       this.removeFromFavorites(item);
     } else {
-      // we can use lodash lib and isNil() check, but it not required for small projects
       if (selectedItemIndex != -1) {
         const selectedItem = {...item, ...{
           selected: !item.selected,
