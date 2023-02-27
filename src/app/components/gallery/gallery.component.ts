@@ -45,6 +45,7 @@ export class GalleryComponent implements OnInit, OnDestroy {
 
     this.showLoader$ = this.imageApiService.showLoader$.pipe(takeUntil(this.destroyed$));
 
+    // TODO: need to split array of images by parts of 3 items for virtual scrolling
     this.imagesStorageService.images$
       .pipe(takeUntil(this.destroyed$))
       .subscribe((data: any) => {
