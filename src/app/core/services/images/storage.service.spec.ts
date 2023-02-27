@@ -5,7 +5,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { ImageApiService } from './images.service';
 import { BlobImage } from 'src/app/models/general.models';
 
-fdescribe('ImagesStorageService', () => {
+describe('ImagesStorageService', () => {
   let service: ImagesStorageService;
   let httpClientSpy: any;
   let imageApiService: Partial<ImageApiService>;
